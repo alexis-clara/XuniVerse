@@ -289,8 +289,8 @@ class VotingSelector(BaseEstimator, TransformerMixin):
             mapping=defaultdict(LabelEncoder) #le mapping initialize
             le_fit = X[self.categorical_features].fillna("NA").apply(lambda x: mapping[x.name].fit_transform(x)) 
             #transform input data X based on label encoded data
-            for i in list(mapping.keys()):
-                transformed_X[i] = mapping[i].transform(transformed_X[i].fillna("NA"))
+            #for i in list(mapping.keys()):
+            #    transformed_X[i] = mapping[i].transform(transformed_X[i].fillna("NA"))
             self.mapping=mapping 
         else:
             pass
