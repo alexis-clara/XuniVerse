@@ -307,7 +307,7 @@ class WOE(BaseEstimator, TransformerMixin):
                 raise ValueError("woe_bins variable is not present. \
                                 Estimator has to be fitted to apply transformations.")
             
-            print(self.woe_bins.columns)
+            print(self.woe_bins.keys())
             outX[new_column_name] = tempX.replace(self.woe_bins[original_column_name])
             
         #transformed dataframe 
