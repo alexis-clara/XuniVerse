@@ -167,7 +167,7 @@ class MonotonicBinning(BaseEstimator, TransformerMixin):
             We still want our code to produce bins.
             """
             if len(bins_X_grouped) == 1:
-                bins = algos.quantile(X, np.linspace(0, 1, force_bins)) #creates a new binnning based on forced bins
+                bins = X.quantile(np.linspace(0, 1, force_bins)).values #creates a new binnning based on forced bins
                 if len(np.unique(bins)) == 2:
                     bins = np.insert(bins, 0, 1)
                     bins[1] = bins[1]-(bins[1]/2)
