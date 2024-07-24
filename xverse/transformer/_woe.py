@@ -85,6 +85,7 @@ class WOE(BaseEstimator, TransformerMixin):
         self.exclude_features = exclude_features
         self.woe_prefix = woe_prefix
         self.treat_missing = treat_missing
+        print(self.woe_bins.keys())
         self.woe_bins = woe_bins #only used for future transformations
         
         #these features below are for monotonic operations on numeric variables.
