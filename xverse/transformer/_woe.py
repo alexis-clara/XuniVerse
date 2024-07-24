@@ -86,7 +86,7 @@ class WOE(BaseEstimator, TransformerMixin):
         self.woe_prefix = woe_prefix
         self.treat_missing = treat_missing
         self.woe_bins = woe_bins #only used for future transformations
-        print(self.woe_bins.keys())
+        print(self.woe_bins)
         
         #these features below are for monotonic operations on numeric variables.
         #It uses MonotonicBinning class from binning package.
@@ -237,10 +237,13 @@ class WOE(BaseEstimator, TransformerMixin):
         #assign computed values to class variables
         try:
             self.woe_df = self.woe_df.append(temp_woe, ignore_index=True)
+            print(woe_mapping)
             self.woe_bins.update(woe_mapping)
+            print(self.woe_bins)
         except:
             self.woe_df = temp_woe
             self.woe_bins = woe_mapping
+            print(self.woe_bins)
        
         return self
         
@@ -263,6 +266,7 @@ class WOE(BaseEstimator, TransformerMixin):
                 transform_features = self.transform_features
         except:
             if self.woe_bins:
+                print(self.woe_bins.keys())
                 transform_features = list(self.woe_bins.keys())
             else:
                 raise ValueError("Estimator has to be fitted to make WOE transformations")
