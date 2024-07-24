@@ -292,8 +292,7 @@ class VotingSelector(BaseEstimator, TransformerMixin):
                 transformed_X[i] = mapping[i].transform(transformed_X[i].fillna("NA"))
             self.mapping=mapping 
         else:
-            raise ValueError("Error while handling categorical values. \
-                            Accepted inputs - 'woe' for Weight of evidence and 'le' for Label Encoder.")
+            pass
         
         #Take the encoded categorical features and the original numerical features from the dataset
         X = pd.concat([transformed_X[self.categorical_features], X[self.numerical_features]], axis=1)
