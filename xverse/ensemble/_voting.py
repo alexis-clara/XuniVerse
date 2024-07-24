@@ -358,8 +358,8 @@ class VotingSelector(BaseEstimator, TransformerMixin):
                 top_n_value_index = final_results[i].abs().nlargest(self.no_of_features).index
                 column_index = final_results['Variable_Name'].index
                 score_table[i] = column_index.isin(top_n_value_index).astype(int)
-            score_table['Votes'] = score_table.sum(axis=1)
-            return final_results, score_table.sort_values('Votes',ascending=0)
+            #score_table['Votes'] = score_table.sum(axis=1)
+            return final_results, score_table
         else:
             raise ValueError("Please provide a valid selection technique. \
                             Available selection techniques are - Weight of evidence ('WOE'), \
