@@ -3,6 +3,7 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 import pandas as pd
 import numpy as np
 import math
+from copy import deepcopy
 from sklearn.base import BaseEstimator, TransformerMixin 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import RFE
@@ -284,7 +285,7 @@ class VotingSelector(BaseEstimator, TransformerMixin):
         if self.handle_category == 'woe':
             transformed_X, self.mapping, iv_df = self.woe_information_value(X, y) #woe transformed_X
         elif self.handle_category == 'le':
-            transformed_X = X.copy(deep=True)
+            transformed_X = deepcopy(X)
             mapping=defaultdict(LabelEncoder) #le mapping initialize
             le_fit = X[self.categorical_features].fillna("NA").apply(lambda x: mapping[x.name].fit_transform(x)) 
             #transform input data X based on label encoded data
